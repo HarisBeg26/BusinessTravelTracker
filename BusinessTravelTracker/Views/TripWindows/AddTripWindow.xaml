@@ -6,7 +6,53 @@
         xmlns:local="clr-namespace:BusinessTravelTracker.Views.TripWindows"
         mc:Ignorable="d"
         Title="AddTripWindow" Height="450" Width="800">
-    <Grid>
-        
+    <Grid Background="#333333">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" Background="#800000">
+            <TextBlock Text="Potovanja" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10" FontSize="16" />
+        </Border>
+
+        <!-- Form Content -->
+        <Border Grid.Row="1" Background="#EEEEEE" Margin="20" Padding="20">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Input Fields -->
+
+                <TextBlock Text="Destinacija" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,10,0,10" FontWeight="Bold" />
+                <TextBox Grid.Row="0" Grid.Column="1" Width="200" Margin="5,10,0,10" Text="{Binding Destination, UpdateSourceTrigger=PropertyChanged}" />
+
+                <TextBlock Text="Datum začetka:" Grid.Row="1" Grid.Column="0" Margin="0,0,114,0" VerticalAlignment="Center" FontWeight="Bold" />
+                <DatePicker Grid.Row="1" Grid.Column="1" Margin="142,10,138,10"
+                SelectedDate="{Binding StartDate, UpdateSourceTrigger=PropertyChanged}" />
+
+                <!-- End Date -->
+                <TextBlock Text="Datum konca:" Grid.Row="2" Grid.Column="0" Margin="0,0,130,0" VerticalAlignment="Center" FontWeight="Bold" />
+                <DatePicker Grid.Row="2" Grid.Column="1" Margin="142,10,138,10"
+                SelectedDate="{Binding EndDate, UpdateSourceTrigger=PropertyChanged}" />
+
+
+                <TextBlock Text="Namen potovanja" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="0,10,0,10" FontWeight="Bold" />
+                <TextBox Grid.Row="3" Grid.Column="1" Width="200" Margin="5,10,0,10"  Text="{Binding Purpose, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <!-- Add Trip Button -->
+                <Button Content="Dodaj potovanje" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0,20,0,0" Padding="10,5" Background="#800000" Foreground="White" Width="150" Command="{Binding AddTripCommand}"/>
+            </Grid>
+        </Border>
     </Grid>
 </Window>
