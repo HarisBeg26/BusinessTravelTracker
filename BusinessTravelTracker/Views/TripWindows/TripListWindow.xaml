@@ -29,7 +29,7 @@
                 <StackPanel>
                     <!-- Add Travel Button -->
                     <Button Name="btn_AddTravelRedirect" Content="Novo potovanje" HorizontalAlignment="Stretch" Margin="0,0,0,10" 
-                        Background="#4CAF50" Foreground="White" Click="btn_AddTravelRedirect_Click" />
+                        Background="#4CAF50" Foreground="White" />
 
                     <!-- Delete Travel Button -->
                     <Button Name="btn_DeleteTravel" Content="Izbriši potovanje" HorizontalAlignment="Stretch" Margin="0,0,0,10" 
