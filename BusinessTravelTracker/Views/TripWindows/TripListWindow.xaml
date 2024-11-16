@@ -29,7 +29,7 @@
                 <StackPanel>
                     <!-- Add Travel Button -->
                     <Button Name="btn_AddTravelRedirect" Content="Novo potovanje" HorizontalAlignment="Stretch" Margin="0,0,0,10" 
-                        Background="#4CAF50" Foreground="White" />
+                        Background="#4CAF50" Foreground="White" Click="btn_AddTravelRedirect_Click"/>
 
                     <!-- Delete Travel Button -->
                     <Button Name="btn_DeleteTravel" Content="Izbriši potovanje" HorizontalAlignment="Stretch" Margin="0,0,0,10" 
@@ -71,7 +71,7 @@
                         <TextBlock Text="Datum konca:" Grid.Row="3" Grid.Column="0" Margin="0,0,0,5" VerticalAlignment="Center" FontWeight="Bold" />
                         <DatePicker SelectedDate="{Binding SelectedTrip.EndDate}" Grid.Row="3" Grid.Column="1" Margin="5,0,0,5" />
                     </Grid>
-                    <Button Content="Uredi" HorizontalAlignment="Center" Margin="0,20,0,0" Padding="10,5" Width="150" Background="#800000" Foreground="White" Command="{Binding UpdateTripCommand}"></Button>
+                    <Button Content="Uredi" HorizontalAlignment="Center" Margin="0,20,0,0" Padding="10,5" Width="150" Background="#800000" Foreground="White" Command="{Binding UpdateTripCommand}"/>
                 </StackPanel>
             </Border>
         </Grid>
