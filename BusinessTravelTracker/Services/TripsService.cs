@@ -23,7 +23,7 @@ namespace BusinessTravelTracker.Services
 
         public async Task DeleteTripAsync(int id)
         {
-            await _client.From<Expense>().Delete();
+            await _client.From<Trips>().Delete();
         }
         
 

@@ -9,10 +9,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="appsettings.json" />
     <None Remove="Resources\categories.png" />
     <None Remove="Resources\chart.png" />
     <None Remove="Resources\Corporate_Travel_Policy_1200x600.png" />
     <None Remove="Resources\expense.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
