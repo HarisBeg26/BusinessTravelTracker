@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessTravelTracker.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,12 @@ namespace BusinessTravelTracker.Views.TripWindows
     /// </summary>
     public partial class AddTripWindow : Window
     {
-        public AddTripWindow()
+        private readonly TripsViewModel viewModel;
+        public AddTripWindow(TripsViewModel _viewModel)
         {
             InitializeComponent();
+            viewModel = _viewModel;
+            DataContext = viewModel;
         }
     }
 }
