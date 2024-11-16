@@ -32,7 +32,7 @@
                     <!-- Description -->
                     <TextBlock Text="Dodajanje in urejanje potovanj" FontSize="10" TextAlignment="Center" Foreground="Gray" Margin="0,0,0,10" />
                     <!-- Navigation Button -->
-                    <Button Name="btn_RedirectTravel" Content="Go to Travels" Width="120" Margin="0,10,0,0"  />
+                    <Button Name="btn_RedirectTravel" Content="Go to Travels" Width="120" Margin="0,10,0,0" Click="btn_RedirectTravel_Click"  />
                 </StackPanel>
             </Border>
 
@@ -42,7 +42,7 @@
                     <Image Source="Resources/expense.png" Width="131" Height="112" />
                     <TextBlock Text="STROŠKI" FontSize="13" FontWeight="Bold" TextAlignment="Center" Margin="0,10,0,5" />
                     <TextBlock Text="Dodajanje in urejanje stroškov" FontSize="10" TextAlignment="Center" Foreground="Gray" Margin="0,0,0,10" />
-                    <Button Name="btn_RedirectExpense" Content="Go to Expenses" Width="120" Margin="0,10,0,0"  />
+                    <Button Name="btn_RedirectExpense" Content="Go to Expenses" Width="120" Margin="0,10,0,0" Click="btn_RedirectExpense_Click"  />
                 </StackPanel>
             </Border>
 
