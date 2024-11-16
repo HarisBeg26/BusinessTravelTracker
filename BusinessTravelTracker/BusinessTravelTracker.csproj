@@ -9,7 +9,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\categories.png" />
+    <None Remove="Resources\chart.png" />
+    <None Remove="Resources\Corporate_Travel_Policy_1200x600.png" />
+    <None Remove="Resources\expense.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Supabase" Version="1.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\categories.png" />
+    <Resource Include="Resources\chart.png" />
+    <Resource Include="Resources\Corporate_Travel_Policy_1200x600.png" />
+    <Resource Include="Resources\expense.png" />
   </ItemGroup>
 
 </Project>
