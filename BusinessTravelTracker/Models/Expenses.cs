@@ -1,12 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Supabase;
+using Supabase.Postgrest.Attributes;
+using ColumnAttribute = Supabase.Postgrest.Attributes.ColumnAttribute;
 
 namespace BusinessTravelTracker.Models
 {
-    internal class Expenses
+    [Supabase.Postgrest.Attributes.Table("expenses")]
+    public class Expense : SupabaseModel
     {
+        [PrimaryKey("id", false)] // Primary key column
+        public int Id { get; set; }
+
+        [Column("amount")]
+        public decimal Amount { get; set; }
+
+        [Column("description")]
+        public string Description { get; set; }
+
+        [Column("date")]
+        public DateTime Date { get; set; }
+
+        [Column("trip_id")]
+        public int TripId { get; set; } // Foreign key to the trips table
+
+        [Column("created_at")]
+        public DateTime CreatedAt { get; set; }
+
+        [Column("updated_at")]
+        public DateTime UpdatedAt { get; set; }
     }
 }
