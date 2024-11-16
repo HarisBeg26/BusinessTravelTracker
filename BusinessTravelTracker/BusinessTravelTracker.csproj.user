@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Views\ExpensesChartWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ExpenseWindows\AddExpenseWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ExpenseWindows\ExpenseListWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\TripWindows\AddTripWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\TripWindows\TripListWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ExpensesChartWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ExpenseWindows\AddExpenseWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ExpenseWindows\ExpenseListWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\TripWindows\AddTripWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\TripWindows\TripListWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>
