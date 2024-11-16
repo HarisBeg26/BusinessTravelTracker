@@ -8,6 +8,7 @@ using BusinessTravelTracker.Interfaces;
 using BusinessTravelTracker.ViewModels;
 using BusinessTravelTracker.Views.ExpenseWindows;
 using BusinessTravelTracker.Views.TripWindows;
+using BusinessTravelTracker.Services;
 
 namespace BusinessTravelTracker
 {
@@ -53,6 +54,9 @@ namespace BusinessTravelTracker
                     supabaseSettings);
                 return supabaseClient;
             });
+
+            services.AddScoped<ITripsService, TripsService>();
+            services.AddScoped<IExpenseService, ExpensesService>();
 
             services.AddTransient<TripsViewModel>();
             services.AddTransient<ExpensesViewModel>();
