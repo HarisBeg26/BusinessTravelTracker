@@ -27,7 +27,7 @@
             <!-- Sidebar - Expenses List -->
             <Border Grid.Column="0" Background="#F5F5F5" BorderBrush="Gray" BorderThickness="1">
                 <StackPanel>
-                    <Button Name="btn_AddExpenseRedirect" Content="Novi strošek" HorizontalAlignment="Stretch" Margin="10" Background="#4A90E2" Foreground="White" />
+                    <Button Name="btn_AddExpenseRedirect" Content="Novi strošek" HorizontalAlignment="Stretch" Margin="10" Background="#4A90E2" Foreground="White" Click="btn_AddExpenseRedirect_Click" />
 
                     <Button Name="btn_DeleteTravel" Content="Izbriši strošek" HorizontalAlignment="Stretch" Margin="10" 
                         Background="#800000" Foreground="White" Command="{Binding DeleteExpenseCommand}"/>
