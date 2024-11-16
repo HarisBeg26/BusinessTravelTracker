@@ -6,7 +6,68 @@
         xmlns:local="clr-namespace:BusinessTravelTracker.Views.ExpenseWindows"
         mc:Ignorable="d"
         Title="ExpenseListWindow" Height="450" Width="800">
-    <Grid>
-        
+    <Grid Background="#333333">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" Background="#4A90E2">
+            <TextBlock Text="Seznam stroškov" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10" FontSize="16" />
+        </Border>
+
+        <!-- Main Content -->
+        <Grid Grid.Row="1" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Sidebar - Expenses List -->
+            <Border Grid.Column="0" Background="#F5F5F5" BorderBrush="Gray" BorderThickness="1">
+                <StackPanel>
+                    <Button Name="btn_AddExpenseRedirect" Content="Novi strošek" HorizontalAlignment="Stretch" Margin="10" Background="#4A90E2" Foreground="White" Click="btn_AddExpenseRedirect_Click" />
+
+                    <Button Name="btn_DeleteTravel" Content="Izbriši strošek" HorizontalAlignment="Stretch" Margin="10" 
+                        Background="#800000" Foreground="White" Command="{Binding DeleteExpenseCommand}"/>
+                    <ListBox ItemsSource="{Binding Expenses}" SelectedItem="{Binding SelectedExpense}" DisplayMemberPath="ExpenseName" Height="250"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Expense Details -->
+            <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="1" Background="#EEEEEE" Padding="10">
+                <StackPanel>
+                    <TextBlock Text="Strošek" FontSize="18" FontWeight="Bold" Margin="0,0,0,10" />
+
+                    <!-- Expense Details Grid -->
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <!-- Left Column -->
+                        <TextBlock Text="Kategorija stroška:" Grid.Row="0" Grid.Column="0" Margin="0,0,0,5" VerticalAlignment="Center" FontWeight="Bold" />
+                        <TextBox Text="{Binding SelectedExpense.ExpenseCategory}" Grid.Row="0" Grid.Column="1" Margin="5,0,0,5" />
+
+                        <!-- Right Column -->
+                        <TextBlock Text="Znesek:" Grid.Row="2" Grid.Column="0" Margin="0,0,0,5" VerticalAlignment="Center" FontWeight="Bold" />
+                        <TextBox Text="{Binding SelectedExpense.ExpenseAmount}" Grid.Row="2" Grid.Column="1" Margin="5,0,0,5" />
+
+                        <TextBlock Text="Poslovno potovanje:" Grid.Row="3" Grid.Column="0" Margin="0,0,0,5" VerticalAlignment="Center" FontWeight="Bold" />
+                        <TextBox Text="{Binding SelectedTrip.Destination}" Grid.Row="3" Grid.Column="1" Margin="5,0,0,5" />
+                    </Grid>
+                    <Button Content="Uredi" HorizontalAlignment="Center" Margin="0,20,0,0" Padding="10,5" Width="150" Background="#4A90E2" Foreground="White" Command="{Binding UpdateExpenseCommand}"/>
+
+                </StackPanel>
+            </Border>
+        </Grid>
     </Grid>
 </Window>
