@@ -10,8 +10,6 @@ namespace BusinessTravelTracker.Interfaces
     public interface ITripsService
     {
         Task<IEnumerable<Trips>> GetAllTripsAsync();
-
-        Task<Trips> GetTripByIdAsync(int id);
         Task AddTripAsync(Trips trip);
         Task UpdateTripAsync(Trips trip);
         Task DeleteTripAsync(int id);
