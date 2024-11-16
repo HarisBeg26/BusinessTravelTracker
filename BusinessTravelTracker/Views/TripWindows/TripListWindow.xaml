@@ -6,7 +6,74 @@
         xmlns:local="clr-namespace:BusinessTravelTracker.Views.TripWindows"
         mc:Ignorable="d"
         Title="TripListWindow" Height="450" Width="800">
-    <Grid>
-        
+    <Grid Background="#333333">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" Background="#800000">
+            <TextBlock Text="Potovanja" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10" FontSize="16" />
+        </Border>
+
+        <!-- Main Content -->
+        <Grid Grid.Row="1" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Sidebar - Potovanja List -->
+            <Border Grid.Column="0" Background="#F5F5F5" Padding="10">
+                <StackPanel>
+                    <!-- Add Travel Button -->
+                    <Button Name="btn_AddTravelRedirect" Content="Novo potovanje" HorizontalAlignment="Stretch" Margin="0,0,0,10" 
+                        Background="#4CAF50" Foreground="White" Click="btn_AddTravelRedirect_Click" />
+
+                    <!-- Delete Travel Button -->
+                    <Button Name="btn_DeleteTravel" Content="Izbriši potovanje" HorizontalAlignment="Stretch" Margin="0,0,0,10" 
+                        Background="#800000" Foreground="White" Command="{Binding DeleteTripCommand}"/>
+
+                    <!-- ListBox for displaying trips -->
+                    <ListBox ItemsSource="{Binding Trips}" SelectedItem="{Binding SelectedTrip}" DisplayMemberPath="Destination" Height="250"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Detail Panel -->
+            <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="1" Padding="10" Background="#EEEEEE">
+                <StackPanel>
+                    <TextBlock Text="Podrobnosti potovanja" FontSize="18" FontWeight="Bold" Margin="0,0,0,10" />
+
+                    <!-- Details Layout with Grid -->
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <!-- Travel Details Fields -->
+                        <TextBlock Text="Ime potovanja:" Grid.Row="0" Grid.Column="0" Margin="0,0,0,5" VerticalAlignment="Center" FontWeight="Bold" />
+                        <TextBox Text="{Binding SelectedTrip.Purpose}" Grid.Row="0" Grid.Column="1" Margin="5,0,0,5" />
+
+                        <TextBlock Text="Datum začetka:" Grid.Row="1" Grid.Column="0" Margin="0,0,0,5" VerticalAlignment="Center" FontWeight="Bold" />
+                        <DatePicker SelectedDate="{Binding SelectedTrip.StartDate}" Grid.Row="1" Grid.Column="1" Margin="5,0,0,5" />
+
+                        <TextBlock Text="Destinacija:" Grid.Row="2" Grid.Column="0" Margin="0,0,0,5" VerticalAlignment="Center" FontWeight="Bold" />
+                        <TextBox Text="{Binding SelectedTrip.Destination}" Grid.Row="2" Grid.Column="1" Margin="5,0,0,5" />
+
+                        <TextBlock Text="Datum konca:" Grid.Row="3" Grid.Column="0" Margin="0,0,0,5" VerticalAlignment="Center" FontWeight="Bold" />
+                        <DatePicker SelectedDate="{Binding SelectedTrip.EndDate}" Grid.Row="3" Grid.Column="1" Margin="5,0,0,5" />
+                    </Grid>
+                    <Button Content="Uredi" HorizontalAlignment="Center" Margin="0,20,0,0" Padding="10,5" Width="150" Background="#800000" Foreground="White" Command="{Binding UpdateTripCommand}"></Button>
+                </StackPanel>
+            </Border>
+        </Grid>
     </Grid>
 </Window>
