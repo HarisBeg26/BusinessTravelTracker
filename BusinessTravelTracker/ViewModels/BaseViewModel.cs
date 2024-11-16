@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace BusinessTravelTracker.ViewModels
 {
+=======
     public class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
