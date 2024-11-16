@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BusinessTravelTracker.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,21 @@ namespace BusinessTravelTracker.Views.TripWindows
     /// </summary>
     public partial class TripListWindow : Window
     {
-        public TripListWindow()
+        private readonly IServiceProvider serviceProvider;
+        private readonly TripsViewModel tripsViewModel;
+        public TripListWindow(IServiceProvider _serviceProvider, TripsViewModel _tripsViewModel)
         {
             InitializeComponent();
+            serviceProvider = _serviceProvider;
+            tripsViewModel = _tripsViewModel;
+            DataContext = tripsViewModel;
+        }
+
+        private void btn_AddTravelRedirect_Click(object sender, RoutedEventArgs e)
+        {
+            var addTravel = serviceProvider.GetRequiredService<AddTripWindow>();
+            addTravel.Show();
+            this.Hide();
         }
     }
 }
