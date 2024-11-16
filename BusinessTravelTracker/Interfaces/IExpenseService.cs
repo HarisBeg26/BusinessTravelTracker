@@ -10,7 +10,7 @@ namespace BusinessTravelTracker.Interfaces
     public interface IExpenseService
     {
         Task<IEnumerable<Expense>> GetAllExpensesAsync();
-        Task<IEnumerable<Expense>> GetAllExpensesByTripIdAsync();
+        Task<IEnumerable<Expense>> GetAllExpensesByTripIdAsync(int id);
         Task AddExpenseAsync(Expense expense);
         Task UpdateExpenseAsync(Expense expense);
         Task DeleteExpenseAsync(int id);
