@@ -17,7 +17,7 @@ namespace BusinessTravelTracker.Models
         public int Id { get; set; }
 
         [Column("amount")]
-        public decimal Amount { get; set; }
+        public double Amount { get; set; }
 
         [Column("description")]
         public string Description { get; set; }

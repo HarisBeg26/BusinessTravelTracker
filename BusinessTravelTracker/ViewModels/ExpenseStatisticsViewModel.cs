@@ -1,4 +1,7 @@
 ﻿using BusinessTravelTracker.Interfaces;
+using BusinessTravelTracker.Models;
+using LiveCharts.Wpf;
+using LiveCharts;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,16 +14,15 @@ namespace BusinessTravelTracker.ViewModels
 {
     public class ExpenseStatisticsViewModel:BaseViewModel
     {
-        private readonly IExpenseService expenseService;
+        private readonly IExpenseService _expenseService;
 
-        public decimal TotalExpenses { get; set; }
-        public decimal AverageExpenses { get; set; }
-
+        public double TotalExpenses { get; set; }
+        public double AverageExpense { get; set; }
         public ObservableCollection<ExpenseCategoryStatistic> ExpensesByCategory { get; set; }
 
-        public ExpenseStatisticsViewModel(IExpenseService _expenseService) 
+        public ExpenseStatisticsViewModel(IExpenseService expenseService)
         {
-            expenseService = _expenseService;
+            _expenseService = expenseService;
             ExpensesByCategory = new ObservableCollection<ExpenseCategoryStatistic>();
 
             LoadStatistics();
@@ -30,16 +32,18 @@ namespace BusinessTravelTracker.ViewModels
         {
             try
             {
-                var allExpenses = await expenseService.GetAllExpensesAsync();
+                var allExpenses = await _expenseService.GetAllExpensesAsync();
 
-                TotalExpenses = allExpenses.Sum(e => e.Amount);
-                AverageExpenses = allExpenses.Any() ? allExpenses.Average(e => e.Amount) : 0;
+                TotalExpenses = allExpenses.Sum(expense => expense.Amount);
+                AverageExpense = allExpenses.Any() ? allExpenses.Average(expense => expense.Amount) : 0;
 
-                var groupedByCategory = allExpenses.GroupBy(e => e.Category).Select(group => new ExpenseCategoryStatistic
-                {
-                    Category = group.Key,
-                    TotalAmount = group.Sum(e => e.Amount)
-                });
+                var groupedByCategory = allExpenses
+                    .GroupBy(expense => expense.Category)
+                    .Select(group => new ExpenseCategoryStatistic
+                    {
+                        Category = group.Key,
+                        TotalAmount = group.Sum(expense => expense.Amount)
+                    });
 
                 ExpensesByCategory.Clear();
                 foreach (var stat in groupedByCategory)
@@ -48,7 +52,7 @@ namespace BusinessTravelTracker.ViewModels
                 }
 
                 OnPropertyChanged(nameof(TotalExpenses));
-                OnPropertyChanged(nameof(AverageExpenses));
+                OnPropertyChanged(nameof(AverageExpense));
                 OnPropertyChanged(nameof(ExpensesByCategory));
             }
             catch (Exception ex)
@@ -61,6 +65,6 @@ namespace BusinessTravelTracker.ViewModels
     public class ExpenseCategoryStatistic
     {
         public string Category { get; set; }
-        public decimal TotalAmount { get; set; }
+        public double TotalAmount { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using BusinessTravelTracker.Interfaces;
+using BusinessTravelTracker.Views;
 using BusinessTravelTracker.Views.ExpenseWindows;
 using BusinessTravelTracker.Views.TripWindows;
 using Microsoft.Extensions.DependencyInjection;
@@ -42,6 +43,13 @@ namespace BusinessTravelTracker
         {
             var expenseList = _serviceProvider.GetRequiredService<ExpenseListWindow>();
             expenseList.Show();
+            this.Hide();
+        }
+
+        private void btn_RedirectChart_Click(object sender, RoutedEventArgs e)
+        {
+            var statistics = _serviceProvider.GetRequiredService<ExpensesChartWindow>();
+            statistics.Show();
             this.Hide();
         }
     }

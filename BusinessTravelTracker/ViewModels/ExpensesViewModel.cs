@@ -49,9 +49,9 @@ namespace BusinessTravelTracker.ViewModels
         }
 
 
-        private decimal amount;
+        private double amount;
 
-        public decimal Amount
+        public double Amount
         {
             get { return amount; }
             set 
