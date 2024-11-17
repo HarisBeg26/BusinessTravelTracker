@@ -23,15 +23,30 @@ namespace BusinessTravelTracker.Views.ExpenseWindows
     public partial class ExpenseListWindow : Window
     {
         private readonly IServiceProvider serviceProvider;
-        private readonly IExpenseService expenseService;
-        private readonly ITripsService tripsService;
         private readonly ExpensesViewModel expensesViewModel;
-        public ExpenseListWindow(IExpenseService _expenseService, IServiceProvider _serviceProvider)
+        public ExpenseListWindow(IExpenseService _expenseService, ITripsService _tripsService, IServiceProvider _serviceProvider)
         {
             InitializeComponent();
             serviceProvider = _serviceProvider;
-            expenseService = _expenseService;
+            expensesViewModel = new ExpensesViewModel(_expenseService, _tripsService);
             DataContext = expensesViewModel;
+
+            Loaded += async (sender, args) =>
+            {
+                await LoadExpensesAsync();
+            };
+        }
+
+        private async Task LoadExpensesAsync()
+        {
+            try
+            {
+                expensesViewModel.LoadExpenses();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to load expenses: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void btn_AddExpenseRedirect_Click(object sender, RoutedEventArgs e)

@@ -31,7 +31,7 @@
 
                     <Button Name="btn_DeleteTravel" Content="Izbriši strošek" HorizontalAlignment="Stretch" Margin="10" 
                         Background="#800000" Foreground="White" Command="{Binding DeleteExpenseCommand}"/>
-                    <ListBox ItemsSource="{Binding Expenses}" SelectedItem="{Binding SelectedExpense}" DisplayMemberPath="ExpenseName" Height="250"/>
+                    <ListBox ItemsSource="{Binding Expenses}" SelectedItem="{Binding SelectedExpense}" DisplayMemberPath="Description" Height="250"/>
                 </StackPanel>
             </Border>
 
@@ -55,14 +55,14 @@
 
                         <!-- Left Column -->
                         <TextBlock Text="Kategorija stroška:" Grid.Row="0" Grid.Column="0" Margin="0,0,0,5" VerticalAlignment="Center" FontWeight="Bold" />
-                        <TextBox Text="{Binding SelectedExpense.ExpenseCategory}" Grid.Row="0" Grid.Column="1" Margin="5,0,0,5" />
+                        <TextBox Text="{Binding SelectedExpense.Category}" Grid.Row="0" Grid.Column="1" Margin="5,0,0,5" />
 
                         <!-- Right Column -->
                         <TextBlock Text="Znesek:" Grid.Row="2" Grid.Column="0" Margin="0,0,0,5" VerticalAlignment="Center" FontWeight="Bold" />
-                        <TextBox Text="{Binding SelectedExpense.ExpenseAmount}" Grid.Row="2" Grid.Column="1" Margin="5,0,0,5" />
+                        <TextBox Text="{Binding SelectedExpense.Amount}" Grid.Row="2" Grid.Column="1" Margin="5,0,0,5" />
 
-                        <TextBlock Text="Poslovno potovanje:" Grid.Row="3" Grid.Column="0" Margin="0,0,0,5" VerticalAlignment="Center" FontWeight="Bold" />
-                        <TextBox Text="{Binding SelectedTrip.Destination}" Grid.Row="3" Grid.Column="1" Margin="5,0,0,5" />
+                        <TextBlock Text="Opis stroška:" Grid.Row="3" Grid.Column="0" Margin="0,0,0,5" VerticalAlignment="Center" FontWeight="Bold" />
+                        <TextBox Text="{Binding SelectedExpense.Description}" Grid.Row="3" Grid.Column="1" Margin="5,0,0,5" />
                     </Grid>
                     <Button Content="Uredi" HorizontalAlignment="Center" Margin="0,20,0,0" Padding="10,5" Width="150" Background="#4A90E2" Foreground="White" Command="{Binding UpdateExpenseCommand}"/>
 
