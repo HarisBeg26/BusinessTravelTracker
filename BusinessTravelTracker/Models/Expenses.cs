@@ -21,17 +21,10 @@ namespace BusinessTravelTracker.Models
 
         [Column("description")]
         public string Description { get; set; }
-
-        [Column("date")]
-        public DateTime Date { get; set; }
+        [Column("category")]
+        public string Category { get; set; }
 
         [Column("trip_id")]
         public int TripId { get; set; } // Foreign key to the trips table
-
-        [Column("created_at")]
-        public DateTime CreatedAt { get; set; }
-
-        [Column("updated_at")]
-        public DateTime UpdatedAt { get; set; }
     }
 }

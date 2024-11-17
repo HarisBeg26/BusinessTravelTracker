@@ -30,27 +30,6 @@ namespace BusinessTravelTracker.Views.ExpenseWindows
             _viewModel = new ExpensesViewModel(expenseService, tripService);
             DataContext = _viewModel;
 
-            Loaded += async (sender, args) =>
-            {
-                await LoadTripsAsync(tripService);
-            };
-        }
-
-        private async Task LoadTripsAsync(ITripsService tripService)
-        {
-            try
-            {
-                var trips = await tripService.GetAllTripsAsync();
-                if (trips == null || !trips.Any())
-                {
-                    MessageBox.Show("No trips found", "Warning", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                _viewModel.Trips = new System.Collections.ObjectModel.ObservableCollection<Models.Trips>(trips);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Failed to load trips: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
         }
     }
 }

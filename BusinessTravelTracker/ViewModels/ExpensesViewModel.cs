@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace BusinessTravelTracker.ViewModels
 {
@@ -73,41 +74,18 @@ namespace BusinessTravelTracker.ViewModels
             }
         }
 
-        private DateTime date;
+        private string category;
 
-        public DateTime Date
+        public string Category
         {
-            get { return date; }
+            get { return category; }
             set 
             { 
-                date = value;
+                category = value;
                 OnPropertyChanged();
             }
         }
 
-        private DateTime createdAt;
-
-        public DateTime CreatedAt
-        {
-            get { return createdAt; }
-            set 
-            { 
-                createdAt = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private DateTime updatedAt;
-
-        public DateTime UpdatedAt
-        {
-            get { return updatedAt; }
-            set 
-            { 
-                updatedAt = value;
-                OnPropertyChanged();
-            }
-        }
 
 
         public ICommand AddExpenseCommand { get; set; }
@@ -174,25 +152,32 @@ namespace BusinessTravelTracker.ViewModels
         {
             try
             {
+                if (SelectedTripId <= 0)
+                {
+                    MessageBox.Show("Please select a valid trip before adding an expense.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
                 var newExpense = new Expense
                 {
                     TripId = SelectedTripId,
                     Description = Description,
                     Amount = Amount,
-                    Date = Date
+                    Category = Category
                 };
 
                 await _expenseService.AddExpenseAsync(newExpense);
                 Expenses.Add(newExpense);
-                MessageBox.Show("Uspesno dodan strošek", "Uspeh", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Expense successfully added.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 // Reset fields
                 Amount = 0;
                 Description = string.Empty;
+                SelectedTripId = 0; // Reset selection
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Napaka", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -217,12 +202,20 @@ namespace BusinessTravelTracker.ViewModels
         {
             try
             {
-                var trips = await _tripsService.GetAllTripsAsync().ConfigureAwait(false);
-                Trips.Clear();  // Clear any previous data
-                foreach (var trip in trips)
+                var trips = await _tripsService.GetAllTripsAsync();
+                Application.Current.Dispatcher.Invoke(() =>
                 {
-                    Trips.Add(trip);  // Add the new trips to the ObservableCollection
-                }
+                    Trips.Clear();
+                    foreach (var trip in trips)
+                    {
+                        Trips.Add(trip);
+                    }
+                    // Set default selection
+                    if (Trips.Count > 0)
+                    {
+                        SelectedTripId = Trips[0].Id;
+                    }
+                });
             }
             catch (Exception ex)
             {
