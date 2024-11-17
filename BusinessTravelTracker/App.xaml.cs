@@ -9,6 +9,7 @@ using BusinessTravelTracker.ViewModels;
 using BusinessTravelTracker.Views.ExpenseWindows;
 using BusinessTravelTracker.Views.TripWindows;
 using BusinessTravelTracker.Services;
+using BusinessTravelTracker.Views;
 
 namespace BusinessTravelTracker
 {
@@ -60,12 +61,14 @@ namespace BusinessTravelTracker
 
             services.AddTransient<TripsViewModel>();
             services.AddTransient<ExpensesViewModel>();
+            services.AddTransient<ExpenseStatisticsViewModel>();
 
             services.AddTransient<MainWindow>();
             services.AddTransient<AddExpenseWindow>();
             services.AddTransient<AddTripWindow>();
             services.AddTransient<TripListWindow>();
             services.AddTransient<ExpenseListWindow>();
+            services.AddTransient<ExpensesChartWindow>();
         }
 
         private void InitializeSupabase()
